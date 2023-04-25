@@ -20,7 +20,6 @@ pipeline {
         }
         stage('push to jfrog') {
             steps {
-                rtDockerPush(
                     sh """
                     docker tag image:$BUILD_ID projectsunique.jfrog.io/docker-trial/image:$BUILD_ID
                     docker push projectsunique.jfrog.io/docker-trial/image:$BUILD_ID
