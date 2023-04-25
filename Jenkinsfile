@@ -14,7 +14,9 @@ pipeline {
             }
         }
         stage('Docker image build') {
-            sh 'docker image build -t image:1.0 .'
+            steps {
+                sh 'docker image build -t image:1.0 .'
+            }
         }
     }
 }
