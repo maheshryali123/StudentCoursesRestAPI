@@ -18,5 +18,14 @@ pipeline {
                 sh 'docker image build -t image:$BUILD_ID .'
             }
         }
+        stage('push to jfrog') {
+            steps {
+                rtDockerPush(
+                    serverId: "jfrogserver",
+                    image: "image:$BUILD_ID",
+                    targetRepo: 'docker-trail'
+                )
+            }
+        }
     }
 }
