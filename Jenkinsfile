@@ -20,14 +20,9 @@ pipeline {
         }
         stage('push to jfrog') {
             steps {
-            rtDockerPush(
-                serverId: "jfrogserver",
-                image: "52.55.76.200:8081/docker-virtual/image:$BUILD_ID",
-                targetRepo: 'local-repo', // where to copy to (from docker-virtual)
-                // Attach custom properties to the published artifacts:
-                properties: 'project-name=docker1;status=stable'
-            )
-        }
+            docker tag image:$BUILD_ID projectsunique.jfrog.io/docker-trial/image:$BUILD_ID
+            docker push projectsunique.jfrog.io/docker-trial/image:$BUILD_ID
         }
     }
+}
 }
