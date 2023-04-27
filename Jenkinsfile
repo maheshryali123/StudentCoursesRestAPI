@@ -16,7 +16,7 @@ pipeline {
         stage('sonar tests') {
             steps {
                 withSonarQubeEnv('sonar_scan') {
-                    sh ' pip install -r requirements.txt sonar:sonar '
+                    sh ' pip install -r requirements.txt '
                 }
             }
         }
