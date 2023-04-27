@@ -16,7 +16,10 @@ pipeline {
         stage('sonar tests') {
             steps {
                 withSonarQubeEnv('sonar_scan') {
-                    sh ' /usr/lib/python3 app.py sonar:sonar '
+                    sh """
+                     cd ~/usr/lib/
+                    /usr/lib/python3 app.py sonar:sonar 
+                    """
                 }
             }
         }
