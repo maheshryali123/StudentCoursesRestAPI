@@ -18,7 +18,7 @@ pipeline {
                 withSonarQubeEnv('sonar_scan') {
                     sh """
                      pwd
-                    /usr/lib/python3 app.py sonar:sonar 
+                    python app.py sonar:sonar 
                     """
                 }
             }
