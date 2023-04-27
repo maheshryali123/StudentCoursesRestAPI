@@ -17,7 +17,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonar_scan') {
                     sh """
-                     cd ~/usr/lib/
+                     cd ./usr/lib/
                     /usr/lib/python3 app.py sonar:sonar 
                     """
                 }
