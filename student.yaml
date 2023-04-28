@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-student
+  namespace: app-student
+spec: 
+  minReadySeconds: 4
+  replicas: 2
+  selector:
+    matchLabels: 
+      app: student-app
+      version: "1.0"
+  template:
+    metadata:
+      name: student-app
+      labels:
+        app: student-app
+        version: "1.0" 
+      namespace: app-student
+    spec:
+      containers:
+        - name: studentapp
+          image: projectsunique.jfrog.io/docker-trial/image:3
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+      imagepullSecrets:
+        - name: regcred       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: student-svc
+spec:
+  type: NodePort
+  ports:
+    - nodePort: 32000
+      port: 35000
+      targetPort: 8080
+                      
+                     

@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deploy
+  namespace: app-student
+spec:
+  minReadySeconds: 4
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mysql
+      version: "1.0"
+  template:
+    metadata:
+      name: mysqlapp
+      labels:
+        app: mysql-app 
+        version: "1.0"
+    spec:
+      containers:
+        - name: mysqlapp
+          image: mysql:latest
+          ports:
+            - containerPort: 3306  
+              protocol: TCP
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: password
+            - name: MYSQL_DATABASE
+              value: mysql
+            - name: MYSQL_USER
+              value: mysqluser
+            - name: MYSQL_PASSWORD
+              value: mysqlpassword          

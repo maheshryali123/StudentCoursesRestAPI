@@ -13,28 +13,33 @@ pipeline {
                 sh ' pip install -r requirements.txt '
             }
         }
-        stage('sonar tests') {
-            steps {
-                withSonarQubeEnv('sonar_scan') {
-                    sh """
-                     pwd
-                    python app.py sonar:sonar 
-                    """
-                }
-            }
-        }
+        //stage('sonar tests') {
+            //steps {
+                //withSonarQubeEnv('sonar_scan') {
+                    //sh ' python app.py sonar:sonar '
+                //}
+            //}
+        //}
         stage('Docker image build') {
             steps {
                 sh 'docker image build -t image:$BUILD_ID .'
             }
         }
-        //stage('push to jfrog') {
-            //steps {
-            //sh """    
-            //docker tag image:$BUILD_ID projectsunique.jfrog.io/docker-trial/image:$BUILD_ID
-            //docker push projectsunique.jfrog.io/docker-trial/image:$BUILD_ID
-            //"""
-        //}
-    //}
+        stage('push to jfrog') {
+            steps {
+            sh """    
+            docker tag image:$BUILD_ID projectsunique.jfrog.io/docker-trial/image:$BUILD_ID
+            docker push projectsunique.jfrog.io/docker-trial/image:$BUILD_ID
+            """
+        }
+        stage('deployapplication') {
+            steps {
+                sh """
+                kubectl apply -f student.yaml
+                kubectl apply -f mysql.yaml
+                """
+            }
+        }
+    }
 }
 }
