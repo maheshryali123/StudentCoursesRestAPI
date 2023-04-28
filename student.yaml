@@ -38,7 +38,7 @@ spec:
   selector:
     app: student-app
   ports:
-    - nodePort: 32000
+    - nodePort: 32001
       port: 35000
       targetPort: 8080
                       
