@@ -32,6 +32,7 @@ pipeline {
             docker push projectsunique.jfrog.io/docker-trial/image:$BUILD_ID
             """
         }
+        }
         stage('deployapplication') {
             steps {
                 sh """
@@ -42,4 +43,4 @@ pipeline {
         }
     }
 }
-}
+
