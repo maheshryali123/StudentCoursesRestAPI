@@ -26,7 +26,7 @@ spec:
             - containerPort: 8080
               protocol: TCP
       imagePullSecrets:
-        - name: regcred       
+        - name: newsecret      
 ---
 apiVersion: v1
 kind: Service
