@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: studentapp
-          image: projectsunique.jfrog.io/docker-trial/image:3
+          image: projectsunique.jfrog.io/docker-trial/image:latest
           ports:
             - containerPort: 8080
               protocol: TCP
