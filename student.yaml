@@ -34,6 +34,8 @@ metadata:
   name: student-svc
 spec:
   type: NodePort
+  selector:
+    app: student-app
   ports:
     - nodePort: 32000
       port: 35000

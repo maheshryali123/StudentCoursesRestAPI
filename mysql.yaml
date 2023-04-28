@@ -9,7 +9,7 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: mysql
+      app: mysql-app
       version: "1.0"
   template:
     metadata:
